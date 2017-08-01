@@ -1,5 +1,6 @@
 package main;
 
+import boardState.Bitboard;
 import boardState.BoardState;
 
 import java.util.regex.Pattern;
@@ -8,7 +9,6 @@ import java.util.regex.Pattern;
  * Created by mpvoss on 7/20/17.
  */
 public class Util {
-    
 
 
     public void parseFenString(String fenString) {
@@ -16,7 +16,7 @@ public class Util {
 
         String[] parts = fenString.split(" ");
 
-        BoardState boardState = handleBoardState(parts[0]);
+        Bitboard bitboard= handleBoardState(parts[0]);
 
         boolean whiteToMove = handleSideToMove(parts[1]);
         handleCastleRights(parts[2]);
@@ -27,36 +27,35 @@ public class Util {
 
     }
 
-    private BoardState handleBoardState(String str) {
+    public static Bitboard handleBoardState(String str) {
         String[] parts = str.split("/");
+        Bitboard bitboard = new Bitboard();
 
-        int rowIdx = 8;
+        int rowIdx = 7;
         for (String row : parts) {
-            int col = 1;
+            int col = 0;
             for (int i = 0; i < row.length(); i++) {
                 char c = row.charAt(i);
 
-                if (Pattern.matches("\\d",""+c)) {
+                if (Pattern.matches("\\d", "" + c)) {
+                    // Empty spaces
                     col += Integer.parseInt("" + c);
-                }else {
-
-                    // get piece kind
+                } else {
+                    bitboard.setPiece(""+c,rowIdx,col);
 
                     col += 1;
                 }
-
-
-
             }
 
             rowIdx--;
         }
-return null;
+
+
+        return bitboard;
 
     }
 
-    private void handlePiece(String str){
-
+    private void handlePiece(String str) {
 
 
     }

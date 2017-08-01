@@ -1,5 +1,7 @@
 package boardState;
 
+import jdk.internal.util.xml.impl.Pair;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,12 +20,12 @@ public class Bitboard {
 
 
     public static void main(String[] args) {
-        Bitboard b = new Bitboard();
+        Bitboard b = Bitboard.buildStarPosBitboard();
         b.testDriver();
     }
 
     public void testDriver(){
-        print(getBitmap(1));
+        print(getBitmap(0));
     }
 
     public static Bitboard buildBlankBitboard(){
@@ -70,10 +72,10 @@ public class Bitboard {
         long val =  (1L << idx) | l;
 
 
-        String str = String.format("%64s", Long.toBinaryString(val)).replace(' ', '0');
-        for (int i = 7; i >= 0; i--) {
-            System.out.println(str.substring(i * 8, (i * 8) + 8));
-        }System.out.println();
+//        String str = String.format("%64s", Long.toBinaryString(val)).replace(' ', '0');
+//        for (int i = 7; i >= 0; i--) {
+//            System.out.println(str.substring(i * 8, (i * 8) + 8));
+//        }System.out.println();
 
         return val;
 
@@ -129,5 +131,15 @@ public class Bitboard {
 
     }
 
+
+    public String toFenString(){
+
+
+
+    }
+
+    public Pair<Integer,Integer> getCoordPair(long){
+
+    }
 
 }
