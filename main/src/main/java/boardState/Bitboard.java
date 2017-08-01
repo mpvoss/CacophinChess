@@ -1,5 +1,8 @@
 package boardState;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by mpvoss on 7/20/17.
  */
@@ -23,13 +26,57 @@ public class Bitboard {
         print(getBitmap(1));
     }
 
-    public Bitboard() {
-        initRooks();
-        initKnights();
-        initBishops();
-        initKings();
-        initQueens();
-        initPawns();
+    public static Bitboard buildBlankBitboard(){
+        return new Bitboard();
+    }
+
+    public static Bitboard buildStarPosBitboard(){
+        Bitboard bitboard = new Bitboard();
+        bitboard.initRooks();
+        bitboard.initKnights();
+        bitboard.initBishops();
+        bitboard.initKings();
+        bitboard.initQueens();
+        bitboard.initPawns();
+
+        return bitboard;
+    }
+
+
+
+    public void setPiece(String str, int row, int col){
+        int side = str.toUpperCase().equals(str) ? 0: 1;
+        Map<String,long[]>map = new HashMap<>();
+        map.put("r",rooks);
+        map.put("n",knights);
+        map.put("b",bishops);
+        map.put("p",pawns);
+        map.put("q",queens);
+        map.put("k",kings);
+
+        long [] l = map.get(str.toLowerCase());
+
+        long bitboard = l[side];
+
+
+        l[side] = assertBit(row,col,bitboard);
+
+
+    }
+
+    protected long assertBit(int row, int col, long l) {
+        int idx = ((7-row)*8)+(7-col);
+
+        long val =  (1L << idx) | l;
+
+
+        String str = String.format("%64s", Long.toBinaryString(val)).replace(' ', '0');
+        for (int i = 7; i >= 0; i--) {
+            System.out.println(str.substring(i * 8, (i * 8) + 8));
+        }System.out.println();
+
+        return val;
+
     }
 
     public long getBitmap(int side) {

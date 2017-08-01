@@ -8,6 +8,9 @@ import java.util.regex.Pattern;
  * Created by mpvoss on 7/20/17.
  */
 public class Util {
+    
+
+
     public void parseFenString(String fenString) {
         String test = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
@@ -49,6 +52,12 @@ public class Util {
             rowIdx--;
         }
 return null;
+
+    }
+
+    private void handlePiece(String str){
+
+
 
     }
 
