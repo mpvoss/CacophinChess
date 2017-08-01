@@ -12,6 +12,10 @@ public class UtilTest {
     public void parseFen() throws ParseException {
         String test = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
+
+
+
+
     }
 
 

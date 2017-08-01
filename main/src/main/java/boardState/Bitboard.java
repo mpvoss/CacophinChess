@@ -20,7 +20,7 @@ public class Bitboard {
     }
 
     public void testDriver(){
-        print(getBitmap(1));
+        print(getBitmap(0));
     }
 
     public Bitboard() {

@@ -34,10 +34,19 @@ public class Util {
                 char c = row.charAt(i);
 
                 if (Pattern.matches("\\d",""+c)) {
+                    // Empty spaces
                     col += Integer.parseInt("" + c);
-                }else {
-
+                } else {
                     // get piece kind
+                    boolean isWhite = true;
+                    if (Character.isUpperCase(c)){
+                        isWhite = true;
+                    }else{
+                        isWhite = false;
+                    }
+
+                    BoardState
+
 
                     col += 1;
                 }
